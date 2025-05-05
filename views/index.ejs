@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/header') %>
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary ">
+        <img class="img-fluid" src="images/hero.jpg" alt="">
+        <div class="container">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start" style="background-color: rgb(143, 228, 143);">
+                    <h1 class=" text-uppercase mb-lg-4" style="font-size: xx-large; box-shadow: 20px;">Adopt a Horse Today</h1>
+                </div>  
+        
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                    <div class="bg-light p-4">
+                        <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100 active" id="pills-1-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1"
+                                    aria-selected="true">Our Mission</button>
+                            </li>
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100" id="pills-2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2"
+                                    aria-selected="false">Our Vission</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                                <h5 class="mb-0">is to rescue, rehabilitate, and rehome horses with compassion, dignity, and purpose.
+                                    We strive to be a beacon of hope for horses that have been forgotten, mistreated, or surrendered—offering each one a second chance at life in a safe, loving environment.
+                                    Through responsible adoption, education, and community outreach, we work to create lasting bonds between horses and the people who open their hearts to them.
+                                    Every horse we save is a life restored.
+                                    Every adoption is a story rewritten.</h5>
+                            </div>
+                            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                                <h5 class="mb-0">We envision a world where every horse is valued, protected, and given the opportunity to thrive.
+                                    A future where horses are no longer abandoned or abused, but instead find healing, love, and purpose through meaningful human connections.
+                                    We aim to become a trusted voice in equine welfare—advocating for ethical treatment, raising awareness, and building a community where horses and humans heal and grow together.
+                                     Together, we dream of a future where no horse is left behind.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- horse Start -->
+    <div class="containeer">
+        <h1>Featured Horses</h1>
+        <div class="horse-list">
+          <% horses.forEach(horse => { %>
+            <a href="/horses/<%= horse.id %>" class="horse-card-link">
+              <div class="horse-card">
+                <img src="<%= horse.image %>" alt="<%= horse.name %>">
+                <h2><%= horse.name %></h2>
+                <p><strong>Breed:</strong> <%= horse.breed %></p>
+                <p><strong>Age:</strong> <%= horse.age %> years</p>
+                <p><strong>Height:</strong> <%= horse.height %></p>
+              </div>
+            </a>
+          <% }) %>
+        </div>
+        <div class="center-button">
+          <a href="/horses" class="button" style="background-color: rgb(52, 180, 52);">View All Available </a>
+        </div>
+      </div>
+      <!-- horse End -->
+       
+    
+   
+
+
+    <!-- Testimonial Start -->
+    
+                <div class="col-lg-7">
+                    <div class="owl-carousel testimonial-carousel bg-white p-5">
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-4">
+                                <img class="img-fluid mx-auto" src="images/testimonial-1.jpg" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
+                                    <i class="bi bi-chat-square-quote text-primary"></i>
+                                </div>
+                            </div>
+                            <p>I had never owned a horse before, but the team guided me every step of the way. When I met Bella, I knew instantly she was the one. She came from a tough background, but 
+                                now she's thriving, and so am I. Every day, she reminds me how powerful second chances can be.</p>
+                           
+                            <h5 class="text-uppercase">Emily T., California</h5>
+                        </div>
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-4">
+                                <img class="img-fluid mx-auto" src="images/testimonial-2.jpg" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
+                                    <i class="bi bi-chat-square-quote text-primary"></i>
+                                </div>
+                            </div>
+                            <p>We adopted Ranger for our two kids to learn about responsibility, but he’s become so much more than that. He’s gentle, loyal, and full of personality. We can’t imagine our
+                                 lives without him. Thank you for bringing such joy into our home.</p>
+                            <hr class="w-25 mx-auto">
+                            <h5 class="text-uppercase"> Henderson Family, Texas</h5>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+    
+
+<%- include('partials/footer') %>

@@ -1,0 +1,66 @@
+<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tell Us About Yourself</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Details of the Horse You're Interested In</h1>
+    <div class="horse-details">
+      <img src="<%= horse.image %>" alt="<%= horse.name %>" class="horse-image">
+      <h2><%= horse.name %></h2>
+      <p><strong>Breed:</strong> <%= horse.breed %></p>
+      <p><strong>Age:</strong> <%= horse.age %> years</p>
+      <p><strong>Height:</strong> <%= horse.height %></p>
+    </div>
+    <h2>Tell Us About Yourself</h2>
+    <form action="/submit-details" method="POST">
+      <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
+      </div>
+
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city">
+      </div>
+
+      <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state">
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Preferred Contact Method:</label>
+        <select id="contact" name="contact">
+          <option value="phone">Phone</option>
+          <option value="email">Email</option>
+          <option value="telegram">Telegram</option>
+        </select>
+      </div>
+
+      <!-- Hidden inputs for horse info -->
+      <input type="hidden" name="horseId" value="<%= horse.id %>">
+      <input type="hidden" name="horseName" value="<%= horse.name %>">
+      <input type="hidden" name="horseFee" value="<%= horse.fee %>">
+
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
+<%- include('partials/footer') %>

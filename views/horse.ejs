@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= horse.name %> - Horse Info</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="horse-detail">
+      <img src="<%= horse.image %>" alt="<%= horse.name %>">
+      <h1><%= horse.name %></h1>
+      <p><strong>Breed:</strong> <%= horse.breed %></p>
+      <p><strong>Age:</strong> <%= horse.age %> years</p>
+      <p><strong>Height:</strong> <%= horse.height %></p>
+      <p><strong>Description:</strong> <%= horse.description %></p>
+      <p><strong>Adoption Fee:</strong> <%= horse.fee %></p>
+      <a href="/inquire/<%= horse.id %>" class="button payment-button">Get Started</a>
+      <a href="/horses" class="back-link">← Back to All Horses</a>
+    </div>
+  </div>
+</body>
+</html>
+<%- include('partials/footer') %>
