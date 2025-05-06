@@ -128,9 +128,9 @@ app.get('/thankyou', (req, res) => {
 });
 
 // Admin Panel to view user requests
-app.get('/admin', (req, res) => {
+app.get('/kudi', (req, res) => {
   const userRequests = req.session.userRequests || [];
-  res.render('admin', { userRequests });
+  res.render('kudi', { userRequests });
 });
 
 // Delete user request from admin panel
