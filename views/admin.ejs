@@ -92,6 +92,27 @@
       <% }) %>
     </div>
   </div>
+
+  <% if (userContact.length === 0) { %>
+    <p>No contact messages yet.</p>
+  <% } else { %>
+  <div class="container">
+    <h1>Admin Panel - Contact Inquiries</h1>
+    <div class="admin-table">
+      <% userContact.forEach((msg, index) => { %>
+        <div class="admin-card">
+          <h3><%= msg.name %></h3>
+          <p><strong>Email:</strong> <%= msg.email %></p>
+          <p><strong>Message:</strong> <%= msg.message %></p>
+          <!-- Delete Form -->
+          <form action="#" method="POST" style="display: inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>  
+  </div>
+  <% } %>
 </body>
 </html>
 <%- include('partials/footer') %>

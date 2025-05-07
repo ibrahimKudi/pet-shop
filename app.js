@@ -127,10 +127,33 @@ app.get('/thankyou', (req, res) => {
   });
 });
 
+
+// Adoption 101 Page
+app.get('/adoption101', (req, res) => {
+  res.render('adoption101');
+});
+
+app.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+app.post('/contact', async(req, res)=> {
+  try{
+    const {name, email, message} = req.body
+    const newContact = req.session.newContact || []
+    newContact.push({name, email, message})
+    req.session.newContact = newContact
+    console.log(req.session.newContact)
+    res.redirect('/thankyou')
+  }catch(error){
+    console.log(error)
+  }
+})
 // Admin Panel to view user requests
 app.get('/kudi', (req, res) => {
   const userRequests = req.session.userRequests || [];
-  res.render('kudi', { userRequests });
+  const userContact = req.session.newContact || []
+  res.render('admin', { userRequests, userContact });
 });
 
 // Delete user request from admin panel
@@ -148,6 +171,10 @@ app.post('/delete-inquiry/:index', (req, res) => {
   // Redirect back to the admin panel
   res.redirect('/admin');
 });
+
+
+
+
 
 // Start the server
 app.listen(PORT, () => {
