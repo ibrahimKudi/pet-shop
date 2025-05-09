@@ -169,7 +169,7 @@ app.post('/delete-inquiry/:index', (req, res) => {
   }
 
   // Redirect back to the admin panel
-  res.redirect('/admin');
+  res.redirect('/kudi');
 });
 
 
