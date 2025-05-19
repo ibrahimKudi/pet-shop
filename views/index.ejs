@@ -5,17 +5,11 @@
 <%- include('partials/header') %>
 
     <!-- Hero Start -->
-    <div class="container-fluid bg-primary ">
-        
-        <img class="img-fluid" src="images/hero.jpg" alt="">
-        <div class="container">
-            <div class="row justify-content-start">
-                <div class="col-lg-8 text-center text-lg-start" style="background-color: rgb(143, 235, 143);">
-                    <h2 class=" ">🌍 Adopt a Horse Today </h2>
-                </div>    
-            </div>
-        </div>
-    </div>
+    <section class="hero" role="banner">
+    <h1>Welcome to Trusted Hooves</h1>
+    <p>Your trusted place to find loving horsess and forever homes.</p>
+    <a href="/horses" class="btn-primary" role="button">View Available Horses</a>
+  </section>
 
 
     <!-- About Start -->
@@ -56,27 +50,26 @@
         </div>
     </div>
     <!-- About End -->
-    <h1 class=" text-uppercase mb-lg-4" style="font-size: xx-large; box-shadow: 20px;">🌍 Fast & Reliable — We Deliver Worldwide!</h1>
+
     <!-- horse Start -->
-    <div class="containeer">
-        <h1>Featured Horses</h1>
-        <div class="horse-list">
-          <% horses.forEach(horse => { %>
-            <a href="/horses/<%= horse.id %>" class="horse-card-link">
-              <div class="horse-card">
-                <img src="<%= horse.image %>" alt="<%= horse.name %>">
-                <h2><%= horse.name %></h2>
-                <p><strong>Breed:</strong> <%= horse.breed %></p>
-                <p><strong>Age:</strong> <%= horse.age %> years</p>
-                <p><strong>Height:</strong> <%= horse.height %></p>
-              </div>
-            </a>
-          <% }) %>
-        </div>
-        <div class="center-button">
-          <a href="/horses" class="button" style="background-color: rgb(52, 180, 52);">View All Available </a>
-        </div>
+   <h2>Available Horses for Adoption</h2>
+<div class="all-horses-list">
+  <% horses.forEach(horse => { %>
+    <a href="/horses/<%= horse.id %>" class="horse-card-link">
+      <div class="all-horse-card">
+        <img src="<%= horse.image %>" alt="<%= horse.name %>">
+        <h2><%= horse.name %></h2>
+        <p><strong>Breed:</strong> <%= horse.breed %></p>
+        <p><strong>Age:</strong> <%= horse.age %> years</p>
+        <p><strong>Height:</strong> <%= horse.height %></p>
       </div>
+    </a>
+  <% }) %>
+</div>
+
+
+    <h1 class=" text-uppercase mb-lg-4" style="font-size: xx-large; box-shadow: 20px;">🌍 Fast & Reliable — We Deliver Worldwide!</h1>
+
       <!-- horse End -->
        
     <!-- Testimonial Start -->

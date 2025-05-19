@@ -775,3 +775,118 @@ ul {
   cursor: pointer;
 }
 
+
+/* Reset & basics */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Georgia', serif;
+  background-color: #f9f8f6;
+  color: #333;
+}
+
+.hero {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.85), 
+    rgba(255, 255, 255, 0.4)
+  ),
+  url('/images/hero.jpg') no-repeat center center/cover;
+}
+
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1.2px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: #555;
+  font-style: italic;
+}
+
+.hero .btn-primary {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border: 2px solid #333;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  background-color: #333;
+  color: #ccc;
+}
+
+.hero .btn-primary:hover,
+.hero .btn-primary:focus {
+  background-color: #333;
+  color: #fff;
+  outline: none;
+}
+
+/* Responsive text sizes */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+
+
+.gallery-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  margin-bottom: 20px;
+}
+
+.gallery-container::-webkit-scrollbar {
+  display: none;
+}
+
+.auto-scroll {
+  display: inline-flex;
+  animation: scrollGallery 20s linear infinite;
+}
+
+.gallery-image {
+  display: inline-block;
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+@keyframes scrollGallery {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+

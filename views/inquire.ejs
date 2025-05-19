@@ -13,10 +13,13 @@
     <div class="horse-details">
       <img src="<%= horse.image %>" alt="<%= horse.name %>" class="horse-image">
       <h2><%= horse.name %></h2>
+          <p><strong>Adoption Fee:</strong> <%= horse.fee %></p>
       <p><strong>Breed:</strong> <%= horse.breed %></p>
       <p><strong>Age:</strong> <%= horse.age %> years</p>
       <p><strong>Height:</strong> <%= horse.height %></p>
     </div>
+
+
     <h2>Tell Us About Yourself</h2>
     <form action="/submit-details" method="POST">
       <div class="form-group">

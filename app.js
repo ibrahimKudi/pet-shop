@@ -5,7 +5,12 @@ const session = require('express-session');
 const horses = require('./data/horses');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
+
+
+app.get('/', (req, res) => {
+  res.render('index', { horses });
+  });
 
 // Set EJS as the view engine and use layouts
 app.set('view engine', 'ejs');
