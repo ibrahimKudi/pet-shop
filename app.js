@@ -3,9 +3,67 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const horses = require('./data/horses');
+const bodyParser = require('body-parser');
+const twilio = require('twilio');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Twilio Credentials
+const accountSid = 'AC86475cad9ad17f819ab3135c9ef1b131';
+const authToken = '50857304909458125314ca27014ceec6';
+const client = new twilio(accountSid, authToken);
+
+// Your Twilio Sandbox WhatsApp number
+const FROM_WHATSAPP_NUMBER = 'whatsapp:+14155238886';
+// Your verified WhatsApp number
+const TO_WHATSAPP_NUMBER = 'whatsapp:+2348073669696'; // <-- Your WhatsApp
+
+app.post('/thankyou', (req, res) => {
+  const {
+    name,
+    email,
+    phone,
+    city,
+    state,
+    contact,
+    horseName,
+    horseFee
+  } = req.body;
+
+  const messageBody = `🐎 New Adoption Request:
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone}
+- City/State: ${city}, ${state}
+- Contact Method: ${contact}
+- Horse: ${horseName}
+- Fee: ${horseFee}`;
+
+  client.messages
+    .create({
+      from: FROM_WHATSAPP_NUMBER,
+      to: TO_WHATSAPP_NUMBER,
+      body: messageBody
+    })
+    .then(() => {
+      res.redirect('/thankyou-success'); // redirect after success
+    })
+    .catch(error => {
+      console.error('Twilio error:', error);
+      res.send('Something went wrong.');
+    });
+});
+
+// Success Thank You Page
+app.get('/thankyou-success', (req, res) => {
+  res.render('thankyou'); // Make sure views/thankyou.ejs exists
+});
+
+
+
 
 
 app.get('/', (req, res) => {
@@ -27,12 +85,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false } // Set to true if using https
 }));
-
-// Home page - Featured Horses
-app.get('/', (req, res) => {
-  const featuredHorses = horses.slice(0, 3); // Only first 3 horses
-  res.render('index', { horses: featuredHorses });
-});
 
 // All Horses Page
 app.get('/horses', (req, res) => {
@@ -61,68 +113,6 @@ app.get('/inquire/:id', (req, res) => {
   }
 
   res.render('inquire', { horse });
-});
-
-// Handle Inquiry Form Submission
-app.post('/submit-details', (req, res) => {
-  const { name, email, phone, city, state, contact, horseId, horseName, horseFee } = req.body;
-
-  // Store inquiry details in session or an array for admin review
-  const inquiryData = {
-    name,
-    email,
-    phone,
-    city,
-    state,
-    contact,
-    horseId,
-    horseName,
-    horseFee
-  };
-
-  // Save to session or an array
-  req.session.inquiryDetails = inquiryData;
-
-  // Redirect to payment page
-  res.redirect(`/payment/${horseId}`);
-});
-
-// Payment Page
-app.get('/payment/:id', (req, res) => {
-  const horseId = parseInt(req.params.id);
-  const horse = horses.find(h => h.id === horseId);
-  const inquiryDetails = req.session.inquiryDetails; // Retrieve inquiry data from session
-
-  if (!horse) {
-    return res.status(404).send('Horse not found');
-  }
-
-  // Render payment page with horse details and inquiry data
-  res.render('payment', { horse, inquiryDetails });
-});
-
-// Payment Confirmation (After Payment Selection)
-app.post('/payment-confirmation/:id', (req, res) => {
-  const horseId = parseInt(req.params.id);
-  const paymentMethod = req.body['payment-method']; // Get selected payment method from form
-  const inquiryDetails = req.session.inquiryDetails; // Retrieve inquiry data
-
-  if (!paymentMethod) {
-    return res.status(400).send('Payment method is required');
-  }
-
-  // Save the payment method and inquiry details to session or a database
-  req.session.paymentDetails = { paymentMethod, inquiryDetails };
-
-  // Store payment details and user inquiry for admin panel
-  const userRequests = req.session.userRequests || [];
-  userRequests.push({ ...inquiryDetails, paymentMethod });
-
-  // Save updated user requests back to session
-  req.session.userRequests = userRequests;
-
-  // Redirect to thank you page
-  res.redirect('/thankyou');
 });
 
 // Thank You Page

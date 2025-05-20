@@ -21,7 +21,7 @@
 
 
     <h2>Tell Us About Yourself</h2>
-    <form action="/submit-details" method="POST">
+    <form action="/thankyou" method="post">
       <div class="form-group">
         <label for="name">Your Name:</label>
         <input type="text" id="name" name="name" required>
@@ -57,10 +57,21 @@
         </select>
       </div>
 
+       <div class="form-group">
+        <label for="payment">Select Payment Method:</label>
+        <select id="payment" name="payment">
+        <option value="Cash App">Cash app</option>
+        <option value="Paypal">Paypal</option>
+        <option value="Venmo">Venmo</option>
+        <option value="Crypto">Crypto</option>
+        <option value="Bank Transfer">Bank Transfer</option>
+      </select>
+      </div>
+
       <!-- Hidden inputs for horse info -->
-      <input type="hidden" name="horseId" value="<%= horse.id %>">
-      <input type="hidden" name="horseName" value="<%= horse.name %>">
-      <input type="hidden" name="horseFee" value="<%= horse.fee %>">
+       <input type="hidden" name="horseName" value="<%= horse.name %>">
+       <input type="hidden" name="horseFee" value="<%= horse.fee %>">
+
 
       <button type="submit" class="button">Submit</button>
     </form>
