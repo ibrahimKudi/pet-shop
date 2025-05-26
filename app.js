@@ -69,7 +69,7 @@ app.get('/inquire/:id', (req, res) => {
 
 // Contact Page
 app.get('/contact', (req, res) => {
-  res.render('contact');
+  res.render('contact');  
 });
 
 app.post('/contact', (req, res) => {
@@ -103,7 +103,7 @@ app.post('/thankyou', (req, res) => {
     horseName,
     horseFee
   } = req.body;
-
+12
   const messageBody = `🐎 New Adoption Request:
 - Name: ${name}
 - Email: ${email}
