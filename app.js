@@ -164,6 +164,7 @@ app.post('/delete-inquiry/:index', (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });
+
