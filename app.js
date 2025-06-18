@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const twilio = require('twilio');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 2000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -77,7 +77,7 @@ app.post('/contact', (req, res) => {
   const newContact = req.session.newContact || [];
   newContact.push({ name, email, message });
   req.session.newContact = newContact;
-  res.redirect('/thankyou-success');
+  res.redirect('/thankyou');
 });
 
 // Adoption 101 Page
@@ -86,7 +86,7 @@ app.get('/adoption101', (req, res) => {
 });
 
 // Thank You Page
-app.get('/thankyou-success', (req, res) => {
+app.get('/thankyou', (req, res) => {
   res.render('thankyou');
 });
 
@@ -136,7 +136,7 @@ app.post('/thankyou', (req, res) => {
       to: TO_WHATSAPP_NUMBER,
       body: messageBody
     })
-    .then(() => res.redirect('/thankyou-success'))
+    .then(() => res.redirect('/thankyou'))
     .catch(error => {
       console.error('Twilio error:', error);
       res.send('Something went wrong.');
@@ -164,7 +164,6 @@ app.post('/delete-inquiry/:index', (req, res) => {
 });
 
 // Start Server
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
-
